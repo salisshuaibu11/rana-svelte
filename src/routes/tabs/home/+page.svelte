@@ -1,1 +1,75 @@
-Home
+<script lang="ts">
+  import axios from "axios";
+	import { onMount } from "svelte";
+
+  import type { Activity } from "$lib/types";
+
+  const API: string = "https://orangevalleycaa.org/api/videos";
+  let activityList: boolean = false;
+
+  let activities: Activity[] = [];
+
+  const getAllActivities = async () => {
+    activityList = true;
+    try {
+      const response = await axios.get(API);
+
+      activities = response.data;
+
+      activityList = false;
+    } catch (error) {
+      activityList = false;
+    }
+  }
+
+  onMount(() => {
+    getAllActivities();
+  })
+</script>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  {#if activityList}
+    <ion-card>
+      <ion-skeleton-text class="skeleton-image"></ion-skeleton-text>
+      <ion-card-header>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-card-header>
+    </ion-card>
+    <ion-card>
+      <ion-skeleton-text class="skeleton-image"></ion-skeleton-text>
+      <ion-card-header>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-card-header>
+    </ion-card>
+    <ion-card>
+      <ion-skeleton-text class="skeleton-image"></ion-skeleton-text>
+      <ion-card-header>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-card-header>
+    </ion-card>
+  {:else}
+    {#each activities as activity}
+      <ion-card>
+        <ion-img src="{activity.cropped}"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{activity.name}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    {/each}
+  {/if}
+</ion-content>
+
+<style>
+  .skeleton-image {
+    height: 200px;
+  }
+</style>

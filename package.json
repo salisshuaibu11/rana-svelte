@@ -38,6 +38,7 @@
 		"@capacitor/android": "^4.6.3",
 		"@capacitor/core": "^4.6.3",
 		"@ionic/core": "^6.5.3",
+		"firebase": "^9.17.1",
 		"ionic-svelte": "^0.5.67",
 		"ionicons": "^6.1.3"
 	}

@@ -20,12 +20,8 @@
       tab: 'profile',
     }
   ];
-
-  const logStuff = () => {
-    console.log('id');
-  }
 </script>
 
-<IonTabs slot="bottom" tabs={myTabs} ionTabsWillChange={logStuff} ionTabsDidChange={logStuff}>
+<IonTabs slot="bottom" tabs={myTabs}>
   <slot />
 </IonTabs>
