@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
   let email: string = "";
   let password: string = "";
 
@@ -8,7 +10,7 @@
       password
     }
 
-    console.log(DATA);
+    goto('/tabs/home');
   }
 </script>
 
@@ -24,12 +26,12 @@
       <form on:submit|preventDefault={handleSubmit}>
         <ion-item>
           <ion-label>Email</ion-label>
-          <ion-input value={email} name="email" type="email"></ion-input>
+          <ion-input value={email} on:ionChange={(e) => email = e.target.value} name="email" type="email"></ion-input>
         </ion-item>  
         
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input value={password} type="password" name="password"></ion-input>
+          <ion-input value={password} on:ionChange={(e) => password = e.target.value} type="password" name="password"></ion-input>
         </ion-item>
 
         <ion-button type="submit">

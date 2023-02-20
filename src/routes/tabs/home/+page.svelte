@@ -1,11 +1,12 @@
 <script lang="ts">
   import axios from "axios";
-	import { onMount } from "svelte";
 
+	import { onMount } from "svelte";
   import type { Activity } from "$lib/types";
 	import { goto } from "$app/navigation";
+  import { API } from "$lib/api";
+  import Skeleton from "$lib/Skeleton.svelte";
 
-  const API: string = "https://orangevalleycaa.org/api/videos";
   let activityList: boolean = false;
 
   let activities: Activity[] = [];
@@ -36,27 +37,7 @@
 
 <ion-content>
   {#if activityList}
-    <ion-card>
-      <ion-skeleton-text class="skeleton-image"></ion-skeleton-text>
-      <ion-card-header>
-        <ion-skeleton-text animated></ion-skeleton-text>
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-card-header>
-    </ion-card>
-    <ion-card>
-      <ion-skeleton-text class="skeleton-image"></ion-skeleton-text>
-      <ion-card-header>
-        <ion-skeleton-text animated></ion-skeleton-text>
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-card-header>
-    </ion-card>
-    <ion-card>
-      <ion-skeleton-text class="skeleton-image"></ion-skeleton-text>
-      <ion-card-header>
-        <ion-skeleton-text animated></ion-skeleton-text>
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-card-header>
-    </ion-card>
+    <Skeleton count={3}/>
   {:else}
     {#each activities as activity}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -69,9 +50,3 @@
     {/each}
   {/if}
 </ion-content>
-
-<style>
-  .skeleton-image {
-    height: 200px;
-  }
-</style>
