@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
 
   import type { Activity } from "$lib/types";
+	import { goto } from "$app/navigation";
 
   const API: string = "https://orangevalleycaa.org/api/videos";
   let activityList: boolean = false;
@@ -58,7 +59,8 @@
     </ion-card>
   {:else}
     {#each activities as activity}
-      <ion-card>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <ion-card on:click={() => goto(`activity-detail/${activity.id}`)}>
         <ion-img src="{activity.cropped}"></ion-img>
         <ion-card-header>
           <ion-card-title>{activity.name}</ion-card-title>
