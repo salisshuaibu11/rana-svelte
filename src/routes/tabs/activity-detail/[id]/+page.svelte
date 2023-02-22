@@ -28,6 +28,9 @@
   const openModal = async () => {
     const modal = await modalController.create({
       component: Modal,
+      componentProps: {
+        videoUrl: activityDetail?.video_url
+      },
       showBackdrop: true,
       backdropDismiss: false
     });
